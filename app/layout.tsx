@@ -2,7 +2,8 @@
 
 import { FC, PropsWithChildren } from "react";
 
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/src/components/Layout/Layout";
+
 import "./globals.css";
 
 const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {

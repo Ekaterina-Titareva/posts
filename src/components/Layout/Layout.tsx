@@ -5,7 +5,7 @@ import {
   HOME_PAGE,
   PRODUCT,
   PRODUCTS,
-} from "@/constants/routing";
+} from "@/src/constants/routing";
 import { FC, PropsWithChildren } from "react";
 import CustomLink from "../custom-link/CustomLink";
 

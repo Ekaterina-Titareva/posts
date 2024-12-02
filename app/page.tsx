@@ -1,11 +1,8 @@
-import CustomLink from "@/components/custom-link/CustomLink";
-import { AUTH_PAGE, PRODUCTS } from "@/constants/routing";
+import CustomLink from "@/src/components/custom-link/CustomLink";
+import { AUTH_PAGE, PRODUCTS } from "@/src/constants/routing";
 
 const HomePage = () => {
-
-
-
-    return (
+  return (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <span>Добро пожаловать</span>
       <span>С начала нужно написать регистрацию и авторизацию </span>

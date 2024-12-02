@@ -1,5 +1,7 @@
 "use client";
 
+import Login from "@/src/components/login/Login";
+import Registration from "@/src/components/registration/Registration";
 import { useState } from "react";
 
 const Auth = () => {
@@ -16,8 +18,9 @@ const Auth = () => {
           },
         }}
       >
-        {type === "login" ? "register" : "login"}
+        {type === "login" ? "Регистрация" : "Вход"}
       </button>
+      {type === "login" ? <Login /> : <Registration />}
     </section>
   );
 };
