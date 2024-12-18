@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
 import { FieldErrors, useFormContext } from "react-hook-form";
-import * as yup from "yup";
 
 interface InputProps {
   label: string;
-  name: "login" | "password" | "passwordRepeat";
+  name: "email" | "password";
+  type: "text" | "number" | "email";
 }
 
-const Input: FC<InputProps> = ({ label, name }) => {
+const Input: FC<InputProps> = ({ label, name, type }) => {
   const {
     register,
     trigger,
@@ -28,6 +29,7 @@ const Input: FC<InputProps> = ({ label, name }) => {
       <input
         className="block"
         id={name}
+        type={type}
         {...register(name)}
         onChange={(e) => handleChange(e)}
       />

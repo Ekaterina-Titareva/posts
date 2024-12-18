@@ -1,27 +1,26 @@
 import { FC, PropsWithChildren } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { yupSchema } from "@/src/constants/yupSchema";
+
 export interface SubmitProps {
-  login: string;
-  password: string;
+  email: string;
+  password: number;
 }
 
 interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
   handleSubmit: (data: SubmitProps) => void;
-  schema?: yup.AnyObjectSchema | undefined;
 }
 
 const Form: FC<PropsWithChildren<FormProps>> = ({
-  schema,
   handleSubmit,
   children,
   ...FormHTMLAttributes
 }) => {
   const methods = useForm<SubmitProps>({
-    resolver: schema ? yupResolver(schema) : undefined,
+    resolver: yupResolver(yupSchema),
   });
 
   const onSubmit = (data: SubmitProps) => {

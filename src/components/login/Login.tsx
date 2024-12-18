@@ -1,43 +1,32 @@
 "use client";
-import Cookies from "js-cookie";
 
-import { yupSchemaLogin } from "@/src/constants/yupSchema";
 import Form, { SubmitProps } from "@/src/ui/form/Form";
 import Input from "@/src/ui/input/Input";
 import Title from "@/src/ui/title/Title";
+import useAction from "@/src/hoc/useAction";
+import { useAuth } from "@/src/hoc/useAuth";
+import { SubmitHandler } from "react-hook-form";
+import Loading from "@/app/auth/loading";
+import Error from "@/app/error";
 
 const Login = () => {
-  const handleSubmit = (data: SubmitProps) => {
-    const registrationsJSON = Cookies.get("registrations");
-    let foundUser = null;
+  const { loginUser } = useAction();
+  const { isLoading, errorMessage } = useAuth();
 
-    if (registrationsJSON) {
-      const registrations = JSON.parse(registrationsJSON);
-
-      foundUser = registrations.find(
-        (registration: { login: string; password: string }) =>
-          registration.login === data.login
-      );
-    }
-
-    if (foundUser) {
-      if (foundUser.password === data.password) {
-        alert("Авторизация прошла успешно");
-      } else {
-        alert("Неверный пароль");
-      }
-    } else {
-      alert("Пользователя с таким логином не существует");
-    }
+  const onSubmit: SubmitHandler<SubmitProps> = (data) => {
+    loginUser(data);
   };
 
+  if (isLoading) return <Loading />;
+
   return (
-    <div className="flex w-full h-full  flex-col justify-center items-center">
+    <div className="flex w-full h-full flex-col justify-center items-center">
       <Title title="Вход" />
-      <Form handleSubmit={handleSubmit} schema={yupSchemaLogin}>
-        <Input label="Логин" name="login" />
-        <Input label="Пароль" name="password" />
+      <Form handleSubmit={onSubmit}>
+        <Input label="Почта" name="email" type="email" />
+        <Input label="Пароль" name="password" type="number" />
       </Form>
+      {errorMessage && <Error />}
     </div>
   );
 };

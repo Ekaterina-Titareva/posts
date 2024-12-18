@@ -1,4 +1,4 @@
-import CustomLink from "@/src/components/custom-link/CustomLink";
+import CustomLink from "@/src/ui/custom-link/CustomLink";
 import { AUTH_PAGE, PRODUCTS } from "@/src/constants/routing";
 
 const HomePage = () => {

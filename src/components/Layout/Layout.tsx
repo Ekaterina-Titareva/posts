@@ -1,3 +1,5 @@
+import { FC, PropsWithChildren } from "react";
+
 import {
   AUTH_PAGE,
   CREATE_PRODUCTS,
@@ -6,8 +8,8 @@ import {
   PRODUCT,
   PRODUCTS,
 } from "@/src/constants/routing";
-import { FC, PropsWithChildren } from "react";
-import CustomLink from "../custom-link/CustomLink";
+
+import CustomLink from "../../ui/custom-link/CustomLink";
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
