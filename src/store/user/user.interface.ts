@@ -12,3 +12,8 @@ export interface InitialUserStore {
   isLoading: boolean;
   errorMessage: string;
 }
+
+export interface SubmitLoginProps {
+  email: string;
+  password: number;
+}

@@ -16,6 +16,7 @@ export const store = configureStore({
       immutableCheck: false,
       serializableCheck: false,
     }),
+  devTools: true,
 });
 
 export default store;

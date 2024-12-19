@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchPosts } from "./posts.action";
+import { addPost, deletePost, fetchPosts } from "./posts.action";
 import { InitialPostsStore, IPost, ReturnPosts } from "./posts.interface";
 
 const initialState: InitialPostsStore = {
@@ -12,20 +12,15 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addNewPost(state, action: PayloadAction<IPost>) {
-      state.posts.push(action.payload);
-    },
     changePost(state, action: PayloadAction<IPost>) {
       state.posts = state.posts.map((post) =>
         post.id === action.payload.id ? { ...post, ...action.payload } : post
       );
     },
-    deletePost(state, action: PayloadAction<{ id: number }>) {
-      state.posts = state.posts.filter((post) => post.id !== action.payload.id);
-    },
   },
   extraReducers: (builder) => {
     builder
+      // получение всех статей
       .addCase(fetchPosts.pending, (state) => {
         state.isLoading = true;
         state.errorMessage = "";
@@ -43,9 +38,35 @@ export const postsSlice = createSlice({
           state.isLoading = false;
           state.errorMessage = `${action.payload}`;
         }
-      );
+      )
+      // удаление статьи
+      .addCase(deletePost.pending, (state) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(deletePost.fulfilled, (state, action: PayloadAction<number>) => {
+        state.isLoading = false;
+        state.posts = state.posts.filter((post) => post.id !== action.payload);
+      })
+      .addCase(deletePost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = `${action.payload}`;
+      })
+      // добавление статьи
+      .addCase(addPost.pending, (state) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(addPost.fulfilled, (state, action: PayloadAction<IPost>) => {
+        state.isLoading = false;
+        state.posts.push(action.payload);
+      })
+      .addCase(addPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = `${action.payload}`;
+      });
   },
 });
 
-export const { addNewPost, changePost, deletePost } = postsSlice.actions;
+export const { changePost } = postsSlice.actions;
 export default postsSlice.reducer;

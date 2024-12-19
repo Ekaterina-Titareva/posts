@@ -16,12 +16,12 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
     <>
       <main className="flex flex-col h-screen">
         <div className="w-full h-14 border-b flex gap-2 justify-center items-center">
-          <CustomLink href={HOME_PAGE}>Home page</CustomLink>
-          <CustomLink href={PRODUCTS}>Products</CustomLink>
-          <CustomLink href={CREATE_PRODUCTS}>Create Products</CustomLink>
-          <CustomLink href={AUTH_PAGE}>Auth</CustomLink>
-          <CustomLink href={PRODUCT}>Product</CustomLink>
-          <CustomLink href={EDIT_PRODUCT}>Edit-Product</CustomLink>
+          <CustomLink href={HOME_PAGE}>Главная страница</CustomLink>
+          <CustomLink href={PRODUCTS}>Статьи</CustomLink>
+          <CustomLink href={CREATE_PRODUCTS}>Добавить статью</CustomLink>
+          <CustomLink href={AUTH_PAGE}>Авторизация</CustomLink>
+          <CustomLink href={PRODUCT}>Статья</CustomLink>
+          <CustomLink href={EDIT_PRODUCT}>Редактировать статью</CustomLink>
         </div>
         <div className="h-full">{children}</div>
         <div className="w-full h-14 border-t flex justify-center items-center">

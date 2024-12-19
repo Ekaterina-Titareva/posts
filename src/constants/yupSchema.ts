@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const yupSchema = yup.object().shape({
+export const loginSchema = yup.object().shape({
   email: yup
     .string()
     .email("Неверный формат электронной почты")
@@ -9,4 +9,10 @@ export const yupSchema = yup.object().shape({
     .number()
     .min(3, "Пароль должен содержать как минимум три цифры")
     .required("Пароль обязателен"),
+});
+
+export const postSchema = yup.object().shape({
+  id: yup.number().required("id обязателен"),
+  title: yup.string().required("Заголовок обязателен"),
+  body: yup.string().required("Описание обязательно"),
 });

@@ -10,7 +10,7 @@ import Error from "../error";
 import Title from "@/src/ui/title/Title";
 
 const Products = () => {
-  const { fetchPosts } = useAction();
+  const { fetchPosts, deletePost } = useAction();
 
   const { posts, isLoading, errorMessage } = usePosts();
 
@@ -18,9 +18,9 @@ const Products = () => {
     try {
       fetchPosts();
     } catch (error) {
-      console.error("Ошибка при загрузке постов:", error);
+      console.error("Ошибка при загрузке статей:", error);
     }
-  }, [fetchPosts]); // fetchPosts ?
+  }, [fetchPosts]);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;
@@ -28,7 +28,8 @@ const Products = () => {
 
     if (closestPost) {
       const id = closestPost.getAttribute("data-id");
-      console.log(`id нажатого поста: ${id}`);
+      console.log(`удаляем статью: ${id}`);
+      deletePost(Number(id));
     }
   };
 

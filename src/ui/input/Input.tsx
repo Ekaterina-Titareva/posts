@@ -4,7 +4,7 @@ import { FieldErrors, useFormContext } from "react-hook-form";
 
 interface InputProps {
   label: string;
-  name: "email" | "password";
+  name: string;
   type: "text" | "number" | "email";
 }
 

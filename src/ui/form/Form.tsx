@@ -1,36 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, PropsWithChildren } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { yupSchema } from "@/src/constants/yupSchema";
-
-export interface SubmitProps {
-  email: string;
-  password: number;
-}
+import * as yup from "yup";
 
 interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
-  handleSubmit: (data: SubmitProps) => void;
+  onHandleSubmit: (data: any) => void;
+  schema: yup.AnyObjectSchema | undefined;
 }
 
 const Form: FC<PropsWithChildren<FormProps>> = ({
-  handleSubmit,
+  onHandleSubmit,
+  schema,
   children,
   ...FormHTMLAttributes
 }) => {
-  const methods = useForm<SubmitProps>({
-    resolver: yupResolver(yupSchema),
+  const methods = useForm({
+    resolver: schema ? yupResolver(schema) : undefined,
   });
 
-  const onSubmit = (data: SubmitProps) => {
-    handleSubmit(data);
-    methods.reset();
-  };
+  const { handleSubmit } = methods;
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} {...FormHTMLAttributes}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          return onHandleSubmit(data);
+        })}
+        {...FormHTMLAttributes}
+      >
         {children}
         <input
           className="mt-3 p-1 border border-black rounded-md hover:shadow-lg hover:shadow-slate-50 bg-orange-400 cursor-pointer"

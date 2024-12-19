@@ -14,3 +14,10 @@ export interface InitialPostsStore {
   isLoading: boolean;
   errorMessage: string;
 }
+
+export interface SubmitPostProps {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
