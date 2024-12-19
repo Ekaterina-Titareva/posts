@@ -25,10 +25,10 @@ export const fetchPosts = createAsyncThunk<
 //   void,
 //   { rejectValue: string }
 // >("posts/fetch", async (_, { rejectWithValue }) => {
-//     const response = await fetch(FETCH_POSTS);
-//     if (!response.ok) {
-//       return rejectWithValue("Произошла ошибка при загрузке постов");
-//     }
-//     const posts: ReturnPosts = await response.json();
-//     return posts;
+//   const response = await fetch(`${FETCH_POSTS}?_limit=15`);
+//   if (!response.ok) {
+//     return rejectWithValue("Произошла ошибка при загрузке постов");
+//   }
+//   const posts: ReturnPosts = await response.json();
+//   return posts;
 // });

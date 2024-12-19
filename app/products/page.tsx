@@ -1,31 +1,26 @@
 "use client";
 
+import { useEffect } from "react";
+
+import useAction from "@/src/hoc/useAction";
+import { usePosts } from "@/src/hoc/usePosts";
+
 import Loading from "./loading";
 import Error from "../error";
 import Title from "@/src/ui/title/Title";
-import { useSelector } from "react-redux";
-import { TypeRootState } from "@/src/store/store";
-import { useEffect } from "react";
-import useAction from "@/src/hoc/useAction";
 
 const Products = () => {
   const { fetchPosts } = useAction();
 
-  const { posts, isLoading, errorMessage } = useSelector(
-    (state: TypeRootState) => state.posts
-  );
+  const { posts, isLoading, errorMessage } = usePosts();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        fetchPosts();
-      } catch (error) {
-        console.error("Ошибка при загрузке постов:", error);
-      }
-    };
-
-    fetchData();
-  }, [fetchPosts]);
+    try {
+      fetchPosts();
+    } catch (error) {
+      console.error("Ошибка при загрузке постов:", error);
+    }
+  }, [fetchPosts]); // fetchPosts ?
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLElement;

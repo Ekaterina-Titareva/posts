@@ -34,14 +34,14 @@ export const postsSlice = createSlice({
         fetchPosts.fulfilled,
         (state, action: PayloadAction<ReturnPosts>) => {
           state.isLoading = false;
-          state.posts = action.payload; // Сохраняем полученные посты
+          state.posts = action.payload;
         }
       )
       .addCase(
         fetchPosts.rejected,
         (state, action: PayloadAction<string | undefined>) => {
           state.isLoading = false;
-          state.errorMessage = `${action.payload}`; // Сохраняем сообщение об ошибке
+          state.errorMessage = `${action.payload}`;
         }
       );
   },

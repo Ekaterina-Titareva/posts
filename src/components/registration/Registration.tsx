@@ -11,7 +11,7 @@ import Error from "@/app/error";
 
 const Registration = () => {
   const { registrationUser } = useAction();
-  const { isLoading, errorMessage } = useAuth();
+  const { user, isLoading, errorMessage } = useAuth();
 
   const onSubmit: SubmitHandler<SubmitProps> = (data) => {
     registrationUser(data);
@@ -21,6 +21,7 @@ const Registration = () => {
 
   return (
     <div className="flex w-full h-full flex-col justify-center items-center">
+      {user ? user.email : ""}
       <Title title="Регистрация" />
       <Form handleSubmit={onSubmit}>
         <Input label="Почта" name="email" type="email" />
