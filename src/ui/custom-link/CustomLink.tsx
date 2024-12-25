@@ -2,9 +2,8 @@ import Link, { LinkProps } from "next/link";
 import { FC, HTMLProps } from "react";
 
 type PropsLink = LinkProps & HTMLProps<HTMLAnchorElement>;
-interface Props extends PropsLink {}
 
-const CustomLink: FC<Props> = ({ ...atr }) => {
+const CustomLink: FC<PropsLink> = ({ ...atr }) => {
   return (
     <Link
       className="hover:text-orange-400 transition mb-2"

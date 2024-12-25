@@ -1,9 +1,5 @@
-import React from 'react'
+const Uid = ({ params }) => {
+  return <p>{params.uid}</p>;
+};
 
-const Uid = () => {
-  return (
-    <div>Uid</div>
-  )
-}
-
-export default Uid
+export default Uid;

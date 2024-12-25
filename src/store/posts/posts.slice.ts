@@ -59,7 +59,7 @@ export const postsSlice = createSlice({
       })
       .addCase(addPost.fulfilled, (state, action: PayloadAction<IPost>) => {
         state.isLoading = false;
-        state.posts.push(action.payload);
+        state.posts = [action.payload, ...state.posts];
       })
       .addCase(addPost.rejected, (state, action) => {
         state.isLoading = false;
