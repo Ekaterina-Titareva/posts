@@ -5,14 +5,14 @@ import { Provider } from "react-redux";
 
 import store from "@/src/store/store";
 
-import Layout from "@/src/components/Layout/Layout";
+import Layout from "@/src/components/layout/Layout";
 
 import "./globals.css";
 
 const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
   return (
     <html lang="ru">
-      <body key="V2" className="min-h-screen">
+      <body>
         <Provider store={store}>
           <Layout>{children}</Layout>
         </Provider>

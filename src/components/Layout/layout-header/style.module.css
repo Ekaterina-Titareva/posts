@@ -1,0 +1,25 @@
+.header {
+	height: 50px;
+	padding-top: 24px;
+	z-index: 10;
+	width: 100%;
+}
+
+.nav {
+	display: flex;
+	width: 100%;
+}
+
+.navLinksList {
+	display: flex;
+	gap: 14px;
+	margin: 0 0 0 auto;
+}
+
+.navLinksListItemLink {
+	color: var(--Text-White-1000-color);
+}
+
+.navLinksListItemLink:active {
+	color: var(--Brand-Primary-1000-color);
+}

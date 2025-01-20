@@ -1,18 +1,15 @@
-import Link, { LinkProps } from "next/link";
-import { FC, HTMLProps } from "react";
+import { FC, HTMLProps } from 'react'
+import Link, { LinkProps } from 'next/link'
+import styles from './style.module.css'
 
-type PropsLink = LinkProps & HTMLProps<HTMLAnchorElement>;
+type PropsLink = LinkProps & HTMLProps<HTMLAnchorElement>
 
 const CustomLink: FC<PropsLink> = ({ ...atr }) => {
-  return (
-    <Link
-      className="hover:text-orange-400 transition mb-2"
-      {...atr}
-      href={`/${atr.href}`}
-    >
-      {atr.children}
-    </Link>
-  );
-};
+	return (
+		<Link className={styles.link} {...atr} href={`/${atr.href}`}>
+			{atr.children}
+		</Link>
+	)
+}
 
-export default CustomLink;
+export default CustomLink

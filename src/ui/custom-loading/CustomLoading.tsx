@@ -1,13 +1,13 @@
-"use client";
-
-import { FC } from "react";
+'use client'
+import { FC } from 'react'
+import styles from './styles.module.css'
 
 const CustomLoading: FC = () => {
-  return (
-    <div className="h-full w-full flex justify-center items-center">
-      <h1 className="text-3xl">Loading...</h1>
-    </div>
-  );
-};
+	return (
+		<div className={styles.container}>
+			<div className={styles.hourglass} />
+		</div>
+	)
+}
 
-export default CustomLoading;
+export default CustomLoading
